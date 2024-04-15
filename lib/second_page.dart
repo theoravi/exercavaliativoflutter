@@ -42,8 +42,8 @@ class TelaAdicionarTarefa extends StatelessWidget {
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.purple[900], // Fundo roxo escuro
-                onPrimary: Colors.white, // Fonte branca
+                foregroundColor: Colors.white, //fonte branca
+                backgroundColor: Colors.purple[900], //fundo roxo
               ),
               child: Text('Adicionar'),
             ),
