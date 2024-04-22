@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'tarefas_provider.dart';
 
 class TelaAdicionarTarefa extends StatelessWidget {
-  final Function(String, String) callbackAdicionarTarefa;
   final TextEditingController _controladorTitulo = TextEditingController();
   final TextEditingController _controladorDescricao = TextEditingController();
 
-  TelaAdicionarTarefa(this.callbackAdicionarTarefa);
-
   @override
   Widget build(BuildContext context) {
+    var tarefasProvider = Provider.of<TarefasProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -37,13 +38,15 @@ class TelaAdicionarTarefa extends StatelessWidget {
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                callbackAdicionarTarefa(
-                    _controladorTitulo.text, _controladorDescricao.text);
+                tarefasProvider.adicionarTarefa(
+                  _controladorTitulo.text,
+                  _controladorDescricao.text,
+                );
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, //fonte branca
-                backgroundColor: Colors.purple[900], //fundo roxo
+                primary: Colors.purple[900], // Fundo roxo escuro
+                onPrimary: Colors.white, // Fonte branca
               ),
               child: Text('Adicionar'),
             ),
